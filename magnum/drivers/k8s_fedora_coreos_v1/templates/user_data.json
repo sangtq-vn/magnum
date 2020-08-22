@@ -19,6 +19,13 @@
         "sshAuthorizedKeys": [
           "__SSH_KEY_VALUE__"
         ]
+      },
+      {
+        "name": "cas-test",
+        "passwordHash": "Cas@2020",
+        "sshAuthorizedKeys": [
+          "__SSH_KEY_VALUE__"
+        ]
       }
     ]
   },
