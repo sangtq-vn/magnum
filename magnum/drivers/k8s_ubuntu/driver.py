@@ -51,7 +51,7 @@ class Driver(driver.HeatDriver):
 
         self.kubectl = kubectl.KubeCtl(
             bin="/usr/bin/kubectl",
-            global_flags="--validate=false --kubeconfig %s" % CONF.kubernetes.kubeconfig
+            global_flags="--kubeconfig %s" % CONF.kubernetes.kubeconfig
         )
 
         # The token for kubelet tls bootstraping.
@@ -398,7 +398,7 @@ class Driver(driver.HeatDriver):
 
         cluster_kubectl = kubectl.KubeCtl(
             bin="/usr/bin/kubectl",
-            global_flags="--validate=false --kubeconfig %s" % kubeconfig_path
+            global_flags="--kubeconfig %s" % kubeconfig_path
         )
 
         LOG.info(
@@ -623,7 +623,7 @@ class Driver(driver.HeatDriver):
                 kubeconfig_path = self._get_kubeconfig(stack_ctx, cluster)
                 cluster_kubectl = kubectl.KubeCtl(
                     bin="/usr/bin/kubectl",
-                    global_flags="--validate=false --kubeconfig %s" % kubeconfig_path
+                    global_flags="--kubeconfig %s" % kubeconfig_path
                 )
 
                 ns = self.kubectl.get("namespace %s" % cluster.uuid)
