@@ -320,6 +320,11 @@ class Driver(driver.HeatDriver):
             cluster.labels.get("cloud_provider_enabled", "true")
         )
 
+        ca_cert_encoded_str = ca_cert_encoded.decode('utf-8')
+        ca_cert_encoded_str = ca_cert_encoded_str.replace("&#39;","")
+        ca_key_encoded_str = ca_key_encoded.decode('utf-8')
+        ca_key_encoded_str = ca_key_encoded_str.replace("&#39;","")
+
         params = {
             "namespace": cluster.uuid,
             "vip_port_ip": self.apiserver_address,
@@ -327,8 +332,8 @@ class Driver(driver.HeatDriver):
             "vip_port_id": port_info["port_id"],
             "service_ip_range": cluser_service_ip_range,
             "pod_ip_range": cluser_pod_ip_range,
-            "ca_cert": ca_cert_encoded,
-            "ca_key": ca_key_encoded,
+            "ca_cert": ca_cert_encoded_str,
+            "ca_key": ca_key_encoded_str,
             "subnet_id": cluster_template.fixed_subnet,
             "public_network_id": self.public_network_id,
             "cloud_provider_enabled": cloud_provider_enabled,
