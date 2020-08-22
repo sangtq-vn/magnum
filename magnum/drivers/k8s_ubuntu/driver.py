@@ -313,8 +313,8 @@ class Driver(driver.HeatDriver):
             cluster,
             context=context
         )
-        ca_cert_encoded = base64.b64encode(ca_cert.get_certificate().replace("'",""))
-        ca_key_encoded = base64.b64encode(ca_cert.get_decrypted_private_key().replace("'",""))
+        ca_cert_encoded = base64.b64encode(ca_cert.get_certificate())
+        ca_key_encoded = base64.b64encode(ca_cert.get_decrypted_private_key())
 
         cloud_provider_enabled = strutils.bool_from_string(
             cluster.labels.get("cloud_provider_enabled", "true")
@@ -327,8 +327,8 @@ class Driver(driver.HeatDriver):
             "vip_port_id": port_info["port_id"],
             "service_ip_range": cluser_service_ip_range,
             "pod_ip_range": cluser_pod_ip_range,
-            "ca_cert": ca_cert_encoded,
-            "ca_key": ca_key_encoded,
+            "ca_cert": ca_cert_encode.replace("b&#39;",""),
+            "ca_key": ca_key_encoded.replace("b&#39;",""),
             "subnet_id": cluster_template.fixed_subnet,
             "public_network_id": self.public_network_id,
             "cloud_provider_enabled": cloud_provider_enabled,
