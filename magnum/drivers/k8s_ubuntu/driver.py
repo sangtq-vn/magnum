@@ -327,7 +327,7 @@ class Driver(driver.HeatDriver):
             "vip_port_id": port_info["port_id"],
             "service_ip_range": cluser_service_ip_range,
             "pod_ip_range": cluser_pod_ip_range,
-            "ca_cert": ca_cert_encode.replace("b&#39;",""),
+            "ca_cert": ca_cert_encoded.replace("b&#39;",""),
             "ca_key": ca_key_encoded.replace("b&#39;",""),
             "subnet_id": cluster_template.fixed_subnet,
             "public_network_id": self.public_network_id,
