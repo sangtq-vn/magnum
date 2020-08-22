@@ -417,6 +417,13 @@ class FederationNotFound(ResourceNotFound):
 class FederationAlreadyExists(Conflict):
     message = _("A federation with UUID %(uuid)s already exists.")
 
+class NetworkResourceCreationFailed(Conflict):
+    message = _("Failed to create network resource for cluster "
+                "%(cluster_uuid)s, error: %(msg)s.")
+
+
+class ClusterCreationTimeout(MagnumException):
+    message = _("Timeout waiting for the cluster %(cluster_uuid)s.")
 
 class MemberAlreadyExists(Conflict):
     message = _("A cluster with UUID %(uuid)s is already a member of the "
