@@ -313,8 +313,8 @@ class Driver(driver.HeatDriver):
             cluster,
             context=context
         )
-        ca_cert_encoded = base64.b64encode(ca_cert.get_certificate())
-        ca_key_encoded = base64.b64encode(ca_cert.get_decrypted_private_key())
+        ca_cert_encoded = base64.b64encode(ca_cert.get_certificate().replace("'",""))
+        ca_key_encoded = base64.b64encode(ca_cert.get_decrypted_private_key().replace("'",""))
 
         cloud_provider_enabled = strutils.bool_from_string(
             cluster.labels.get("cloud_provider_enabled", "true")
