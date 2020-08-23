@@ -488,7 +488,11 @@ class Driver(driver.HeatDriver):
             "kube-apiserver.yaml.j2", "etcd.yaml.j2",
             "secrets.yaml.j2", "namespace.yaml.j2"
         ]:
+        
+        try
             _delete_manifest(tmpl)
+        except Exception:
+            LOG.info('Cannot delete manifest')    
 
         # Delete floating ip if needed.
         if (self._master_lb_fip_enabled(cluster, c_template) and
