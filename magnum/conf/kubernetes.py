@@ -33,6 +33,9 @@ kubernetes_opts = [
                help=('The default polling interval for Kubernetes cluster '
                      'health. If this number is negative the periodic task '
                      'will be disabled.')),
+    cfg.StrOpt('kubeconfig',
+               default='/etc/magnum/kubernetes/kubeconfig',
+               help='Kubeconfig file used to take with seed cluster.')                     
 ]
 
 

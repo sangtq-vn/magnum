@@ -440,7 +440,14 @@ class NodeGroupNotFound(ResourceNotFound):
 class MasterNGResizeNotSupported(NotSupported):
     message = _("Resizing a master nodegroup is not supported.")
 
+class NetworkResourceCreationFailed(Conflict):
+    message = _("Failed to create network resource for cluster "
+                "%(cluster_uuid)s, error: %(msg)s.")
 
+
+class ClusterCreationTimeout(MagnumException):
+    message = _("Timeout waiting for the cluster %(cluster_uuid)s.")
+    
 class NGResizeOutBounds(Invalid):
     message = _("Resizing %(nodegroup)s outside the allowed range: "
                 "min_node_count = %(min_nc)s, "
