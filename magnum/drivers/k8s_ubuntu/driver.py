@@ -482,16 +482,16 @@ class Driver(driver.HeatDriver):
         _delete_manifest = functools.partial(self._delete_manifest, params)
 
         LOG.info("Deleting components for cluster %s", cluster.uuid)
-        for tmpl in [
-            "openstack-cloud-controller-manager.yaml.j2",
-            "kube-scheduler.yaml.j2", "kube-controllermgr.yaml.j2",
-            "kube-apiserver.yaml.j2", "etcd.yaml.j2",
-            "secrets.yaml.j2", "namespace.yaml.j2"
-        ]:
-            try
+        try:
+            for tmpl in [
+                "openstack-cloud-controller-manager.yaml.j2",
+                "kube-scheduler.yaml.j2", "kube-controllermgr.yaml.j2",
+                "kube-apiserver.yaml.j2", "etcd.yaml.j2",
+                "secrets.yaml.j2", "namespace.yaml.j2"
+            ]:
                 _delete_manifest(tmpl)
-            except Exception:
-                LOG.info('Cannot delete manifest') 
+        except Exception:
+            LOG.info('Cannot delete manifest') 
 
         # Delete floating ip if needed.
         if (self._master_lb_fip_enabled(cluster, c_template) and
