@@ -62,8 +62,7 @@ spec:
           imagePullPolicy: IfNotPresent
           command:
             - kube-apiserver
-            - --enable-admission-plugins=NodeRestriction
-            - --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota
+            - --enable-admission-plugins=NodeRestriction,NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota
             - --allow-privileged=true
             - --anonymous-auth=true
             - --authorization-mode=Node,RBAC
